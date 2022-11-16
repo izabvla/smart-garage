@@ -15,6 +15,7 @@ GPIO.setmode(GPIO.BOARD)
 # PIR input, LED output
 GPIO.setup(8, GPIO.IN, GPIO.PUD_DOWN)
 GPIO.setup(10, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
 
 # Import Adafruit_IO library and create instance of REST client.
 
@@ -45,8 +46,7 @@ except RequestError:
 #receiving and sending data
 while True:
     motion = GPIO.input(8)
-    # debug: alarm never == 1 ?
-    alarm = aio.receive('alarm-feed').value
+    alarm_status = aio.receive('alarm-feed').value
     
     # if no motion detected (input is 0)
     if motion == 0:
