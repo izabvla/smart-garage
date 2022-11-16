@@ -13,8 +13,8 @@ GPIO.setmode(GPIO.BOARD)
 # ...
 
 # PIR input, LED output
-GPIO.setup(11, GPIO.IN, GPIO.PUD_DOWN)
-GPIO.setup(3, GPIO.OUT)
+GPIO.setup(8, GPIO.IN, GPIO.PUD_DOWN)
+GPIO.setup(10, GPIO.OUT)
 
 # Import Adafruit_IO library and create instance of REST client.
 
@@ -44,7 +44,7 @@ except RequestError:
 
 #receiving and sending data
 while True:
-    motion = GPIO.input(11)
+    motion = GPIO.input(8)
     # debug: alarm never == 1 ?
     alarm = aio.receive('alarm-feed').value
     
@@ -53,18 +53,18 @@ while True:
         print('No motion', motion)
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, 'No motion detected.')
-        GPIO.output(3,0)
+        GPIO.output(10,0)
         time.sleep(2)
     # if motion detected and alarm is on (input is 1)
     elif motion == 1 and alarm == 1:
-        GPIO.output(3,1)
+        GPIO.output(10,1)
         print('Intruder alert - alarm: ', alarm.value)
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, 'Motion detected. Alarm engaged, possible intruder alert.')
         time.sleep(2)
     # if motion detected and alarm is off (1 and 0)
     else:
-        GPIO.output(3,1)
+        GPIO.output(10,1)
         print('Motion detected - motion: ', motion)
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, 'Motion detected.')
