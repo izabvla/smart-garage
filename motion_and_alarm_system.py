@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BOARD)
 # 5 6
 # ...
 
-# PIR input, LED output
+# PIR input, LED, Buzzer output
 GPIO.setup(8, GPIO.IN, GPIO.PUD_DOWN)
 GPIO.setup(10, GPIO.OUT)
 GPIO.setup(11, GPIO.OUT)
