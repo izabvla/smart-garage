@@ -1,6 +1,3 @@
-# modularize
-# (rewrite every process as functions, write main function)
-
 import RPi.GPIO as GPIO
 import time
 
