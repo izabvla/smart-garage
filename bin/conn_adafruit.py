@@ -1,7 +1,8 @@
+# Boilerplate adafruit connection
 # Import Adafruit_IO library and create instance of REST client.
-
 from Adafruit_IO import RequestError, Client, Feed
 
+# Adafruit username and key
 ADAFRUIT_IO_USERNAME = 'compiotgroup3'
 ADAFRUIT_IO_KEY = 'aio_gpXs67Bn7HYZmTFj0t1Zuisebnv5'
 
