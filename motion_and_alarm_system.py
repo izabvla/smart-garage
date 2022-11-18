@@ -53,13 +53,6 @@ while True:
         GPIO.output(10,0)
         time.sleep(2)
     # if motion detected and alarm is on (input is 1)
-    elif motion == 1 and alarm == 1:
-        GPIO.output(10,1)
-        print('Intruder alert - alarm: ', alarm.value)
-        aio.send_data(led_feed.key, motion)
-        aio.send_data(motion_feed.key, 'Motion detected. Alarm engaged, possible intruder alert.')
-        time.sleep(2)
-    # if motion detected and alarm is off (1 and 0)
     else:
         GPIO.output(10,1)
         print('Motion detected - motion: ', motion)
@@ -67,7 +60,13 @@ while True:
         aio.send_data(motion_feed.key, 'Motion detected.')
         time.sleep(2)
 
-
-
-
-
+    '''
+    elif motion == 1 and alarm == 1:
+        GPIO.output(10,1)
+        print('Intruder alert - alarm: ', alarm.value)
+        aio.send_data(led_feed.key, motion)
+        aio.send_data(motion_feed.key, 'Motion detected. Alarm engaged, possible intruder alert.')
+        time.sleep(2)
+    # if motion detected and alarm is off (1 and 0)
+    '''
+    
