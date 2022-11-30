@@ -4,13 +4,13 @@ Description.
 
 ## Features
 
-> Motion sensor based alarm and light system.
+- Motion sensor based alarm and light system.
 Description. (PIR HC-SR501, Active Buzzer, LED light)
 
-> Temperature monitoring.
+- Temperature monitoring.
 Description. (GY-521)
 
-> Garage door remote opening and closing.
+- Garage door remote opening and closing.
 Description. (KY-036)
 
 #### Resources
