@@ -85,7 +85,7 @@ except RequestError:
     fan_feed = Feed(name='fan')
     fan_feed = aio.create_feed(fan_feed)
 
-#receiving and sending data
+# Receiving and sending data between Adafruit IO dashboard and sensors
 while True:
     # Motion status (ON - 1, OFF - 0)
     motion = GPIO.input(PIR_PIN)
@@ -99,10 +99,6 @@ while True:
     # Garage door (OPEN - 0, CLOSED - 1)
     garage_door = GPIO.input(TOUCH_PIN)
 
-    # Text sent to be displayed on Adafruit dashboard
-    txt_smartgarage = ''
-    txt_motion = ''
-
     # TEMPERATURE SYSTEM
     aio.send_data(temperature_feed.key, temperature)
 
@@ -114,9 +110,9 @@ while True:
         aio.send_data(garage_feed.key, 1)
         print("Garage door closed.")
         
-
     # MOTION LIGHT & ALARM SYSTEM
 
+    txt_motion = ''
     # If no motion detected (input is 0)
     if motion == 0:
         # LED motion light is turned off
@@ -145,6 +141,11 @@ while True:
         aio.send_data(motion_feed.key, txt_motion)
     print(txt_motion)
 
-    
+    # SMART GARAGE TEXT
+    txt_smartgarage = '''Welcome Home.
+    \nIt is currently {temp:.2f} °C outside.
+    \n'''
+    print(txt_smartgarage.format(temp = temperature))
+    aio.send_data(smartgarage_feed, txt_smartgarage)
     time.sleep(2)
     # print("Temperature: %.2f C" % temperature)
