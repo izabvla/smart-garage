@@ -117,10 +117,10 @@ while True:
     # GARAGE DOOR SYSTEM
     if garage_door == GPIO.LOW:
         aio.send_data(garage_feed.key, 0)
-        print("Garage door open.")
+        txt_door = 'Garage door open.'
     else:
         aio.send_data(garage_feed.key, 1)
-        print("Garage door closed.")
+        txt_door = 'Garage door closed.'
         
     # MOTION LIGHT & ALARM SYSTEM
 
@@ -162,8 +162,7 @@ while True:
     else:
         txt_temp = 'Temperature is according to standards.'
     txt_smartgarage = '''Welcome to your Smart Garage.
-    \n''' + txt_temp + '''\n'''
-    print(txt_smartgarage.format(temp = temperature))
+    \n''' + txt_temp + '''\n''' + txt_motion + '''\n''' + txt_door + '''\n'''
     aio.send_data(smartgarage_feed.key, txt_smartgarage)
+
     time.sleep(2)
-    # print("Temperature: %.2f C" % temperature)
