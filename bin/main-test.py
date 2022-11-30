@@ -94,8 +94,8 @@ while True:
     # Temperature
     temperature = mpu.temperature
     # Heater & Fan status (ON - 1, OFF - 0)
-    heater_status = aio.receive('heater').value
-    fan_status = aio.receive('fan').value
+    #heater_status = aio.receive('heater').value
+    #fan_status = aio.receive('fan').value
     # Garage door (OPEN - 0, CLOSED - 1)
     garage_door = GPIO.input(TOUCH_PIN)
 
@@ -128,10 +128,8 @@ while True:
 
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, txt_motion)
-        print(txt_motion)
+    print(txt_motion)
 
     aio.send_data(temperature_feed.key, temperature)
     time.sleep(2)
     # print("Temperature: %.2f C" % temperature)
-
-
