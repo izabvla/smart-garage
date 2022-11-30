@@ -168,7 +168,7 @@ while True:
     aio.send_data(smartgarage_feed.key, txt_smartgarage)
 
     print('\nLAST UPDATED: ' + time.ctime())
-    print('\nTEMPERATURE: ' + str(temperature)) + ' °C'
+    print('\nTEMPERATURE: ' + str(temperature))
     print('\nMOTION/ALARM: ' + str(txt_motion))
     print('\nLIGHT: (ON - 1, OFF - 0) ' + str(motion))
     print('\nGARAGE DOOR: (OPEN - 0, CLOSED - 1) ' + str(garage_door))
