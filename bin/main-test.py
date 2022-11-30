@@ -72,47 +72,64 @@ try:
 except RequestError:
     temperature_feed = Feed(name='temperature')
     temperature_feed = aio.create_feed(temperature_feed)
+# Heater feed
+try:
+    heater_feed = aio.feeds('heater')
+except RequestError:
+    heater_feed = Feed(name='heater')
+    heater_feed = aio.create_feed(heater_feed)
+# Fan feed
+try:
+    fan_feed = aio.feeds('fan')
+except RequestError:
+    fan_feed = Feed(name='fan')
+    fan_feed = aio.create_feed(fan_feed)
 
 #receiving and sending data
 while True:
-    # Motion status (ON -1, OFF - 0)
+    # Motion status (ON - 1, OFF - 0)
     motion = GPIO.input(PIR_PIN)
-    # Alarm status (ON -1, OFF - 0)
+    # Alarm status (ON - 1, OFF - 0)
     alarm_status = aio.receive('alarm-feed').value
     # Temperature
     temperature = mpu.temperature
+    # Heater & Fan status (ON - 1, OFF - 0)
+    heater_status = aio.receive('heater').value
+    fan_status = aio.receive('fan').value
     # Garage door (OPEN - 0, CLOSED - 1)
     garage_door = GPIO.input(TOUCH_PIN)
 
+    # Text sent to be displayed on Adafruit dashboard
+    txt_smartgarage = ''
     txt_motion = ''
-    # if no motion detected (input is 0)
+    # If no motion detected (input is 0)
     if motion == 0:
+        # LED motion light is turned off
+        GPIO.output(LED_PIN, 0)
         txt_motion = 'No motion detected.'
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, txt_motion)
-        GPIO.output(LED_PIN,0)
-        time.sleep(2)
-        print(txt_motion)
     # if motion detected
     else:
-        # LED ON
+        # LED motion light is turned on
         GPIO.output(LED_PIN,1)
-        # if alarm is on
+        # If Alarm is on
         if alarm_status == '1':
-            txt_motion = 'Motion detected. Intruder alert.'
+            # Turn on buzzer
             GPIO.output(BUZZER_PIN,GPIO.HIGH)
             time.sleep(0.1)
             GPIO.output(BUZZER_PIN, GPIO.LOW)
-            print(txt_motion)
+            txt_motion = 'Motion detected. Intruder alert.'
         # else if alarm is off
         else:
-            txt_motion = 'Motion detected.'
+            # Make sure buzzer is off
             GPIO.output(BUZZER_PIN,GPIO.LOW)
-            print(txt_motion)
+            txt_motion = 'Motion detected.'
 
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, txt_motion)
-        
+        print(txt_motion)
+
     aio.send_data(temperature_feed.key, temperature)
     time.sleep(2)
     # print("Temperature: %.2f C" % temperature)
