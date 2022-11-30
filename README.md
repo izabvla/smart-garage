@@ -1,10 +1,17 @@
-# Smart Garage IoT /smart-garage
+# Smart Garage System with Adafruit IO
 
 Description.
 
 ## Features
 
-- Motion sensor activated lights and alarm system
+> Motion sensor based alarm and light system.
+Description.
+
+> Temperature monitoring.
+Description.
+
+> Garage door remote opening and closing.
+Description.
 
 #### Resources
-https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/
+
