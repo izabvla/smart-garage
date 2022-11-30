@@ -101,15 +101,15 @@ while True:
 
     # TEMPERATURE SYSTEM
     aio.send_data(temperature_feed.key, temperature)
-    if temperature > 35:
+    #if temperature > 35:
         # turn on fan
         #aio.send_data(fan_feed, 1)
         #aio.send_data(heater_feed, 0)
-    elif temperature < 5:
+    #elif temperature < 5:
         # turn on heater
         #aio.send_data(fan_feed, 0)
         #aio.send_data(heater_feed, 1)
-    else:
+    #else:
         # do nothing
         #aio.send_data(fan_feed, 0)
         #aio.send_data(heater_feed, 0)
@@ -162,9 +162,7 @@ while True:
     else:
         txt_temp = 'Temperature is according to standards.'
     txt_smartgarage = '''Welcome to your Smart Garage.
-    \nIt is currently ''' + temperature + ''' °C inside.
-    \n''' + txt_temp + '''
-    \n'''
+    \n''' + txt_temp + '''\n'''
     print(txt_smartgarage.format(temp = temperature))
     aio.send_data(smartgarage_feed.key, txt_smartgarage)
     time.sleep(2)
