@@ -146,6 +146,6 @@ while True:
     \nIt is currently {temp:.2f} °C outside.
     \n'''
     print(txt_smartgarage.format(temp = temperature))
-    aio.send_data(smartgarage_feed, txt_smartgarage)
+    aio.send_data(smartgarage_feed.key, txt_smartgarage)
     time.sleep(2)
     # print("Temperature: %.2f C" % temperature)
