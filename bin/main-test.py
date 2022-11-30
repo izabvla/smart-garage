@@ -102,6 +102,21 @@ while True:
     # Text sent to be displayed on Adafruit dashboard
     txt_smartgarage = ''
     txt_motion = ''
+
+    # TEMPERATURE SYSTEM
+    aio.send_data(temperature_feed.key, temperature)
+
+    # GARAGE DOOR SYSTEM
+    if garage_door == GPIO.LOW:
+        aio.send_data(garage_feed.key, 0)
+        print("Garage door open.")
+    else:
+        aio.send_data(garage_feed.key, 1)
+        print("Garage door closed.")
+        
+
+    # MOTION LIGHT & ALARM SYSTEM
+
     # If no motion detected (input is 0)
     if motion == 0:
         # LED motion light is turned off
@@ -130,6 +145,6 @@ while True:
         aio.send_data(motion_feed.key, txt_motion)
     print(txt_motion)
 
-    aio.send_data(temperature_feed.key, temperature)
+    
     time.sleep(2)
     # print("Temperature: %.2f C" % temperature)
