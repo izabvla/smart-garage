@@ -94,13 +94,25 @@ while True:
     # Temperature
     temperature = mpu.temperature
     # Heater & Fan status (ON - 1, OFF - 0)
-    #heater_status = aio.receive('heater').value
-    #fan_status = aio.receive('fan').value
+    heater_status = aio.receive('heater').value
+    fan_status = aio.receive('fan').value
     # Garage door (OPEN - 0, CLOSED - 1)
     garage_door = GPIO.input(TOUCH_PIN)
 
     # TEMPERATURE SYSTEM
     aio.send_data(temperature_feed.key, temperature)
+    if temperature > 35:
+        # turn on fan
+        aio.send_data(fan_feed, 1)
+        aio.send_data(heater_feed, 0)
+    elif temperature < 5:
+        # turn on heater
+        aio.send_data(fan_feed, 0)
+        aio.send_data(heater_feed, 1)
+    else:
+        # do nothing
+        aio.send_data(fan_feed, 0)
+        aio.send_data(heater_feed, 0)
 
     # GARAGE DOOR SYSTEM
     if garage_door == GPIO.LOW:
@@ -142,8 +154,8 @@ while True:
     print(txt_motion)
 
     # SMART GARAGE TEXT
-    txt_smartgarage = '''Welcome Home.
-    \nIt is currently {temp:.2f} °C outside.
+    txt_smartgarage = '''Welcome to your Smart Garage.
+    \nIt is currently ''' + temperature + ''' °C outside.
     \n'''
     print(txt_smartgarage.format(temp = temperature))
     aio.send_data(smartgarage_feed.key, txt_smartgarage)
