@@ -87,7 +87,7 @@ while True:
     txt_motion = ''
     # if no motion detected (input is 0)
     if motion == 0:
-        message = 'No motion detected.'
+        txt_motion = 'No motion detected.'
         aio.send_data(led_feed.key, motion)
         aio.send_data(motion_feed.key, txt_motion)
         GPIO.output(LED_PIN,0)
@@ -99,14 +99,14 @@ while True:
         GPIO.output(LED_PIN,1)
         # if alarm is on
         if alarm_status == '1':
-            message = 'Motion detected. Intruder alert.'
+            txt_motion = 'Motion detected. Intruder alert.'
             GPIO.output(BUZZER_PIN,GPIO.HIGH)
             time.sleep(0.1)
             GPIO.output(BUZZER_PIN, GPIO.LOW)
             print(txt_motion)
         # else if alarm is off
         else:
-            message = 'Motion detected.'
+            txt_motion = 'Motion detected.'
             GPIO.output(BUZZER_PIN,GPIO.LOW)
             print(txt_motion)
 
