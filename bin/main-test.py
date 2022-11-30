@@ -81,18 +81,18 @@ while True:
     alarm_status = aio.receive('alarm-feed').value
     # Temperature
     temperature = mpu.temperature
-    
-    #
-    message = ''
-    
+    # Garage door (OPEN - 0, CLOSED - 1)
+    garage_door = GPIO.input(TOUCH_PIN)
+
+    txt_motion = ''
     # if no motion detected (input is 0)
     if motion == 0:
         message = 'No motion detected.'
         aio.send_data(led_feed.key, motion)
-        aio.send_data(motion_feed.key, message)
+        aio.send_data(motion_feed.key, txt_motion)
         GPIO.output(LED_PIN,0)
         time.sleep(2)
-        print(message)
+        print(txt_motion)
     # if motion detected
     else:
         # LED ON
@@ -103,15 +103,15 @@ while True:
             GPIO.output(BUZZER_PIN,GPIO.HIGH)
             time.sleep(0.1)
             GPIO.output(BUZZER_PIN, GPIO.LOW)
-            print(message)
+            print(txt_motion)
         # else if alarm is off
         else:
             message = 'Motion detected.'
             GPIO.output(BUZZER_PIN,GPIO.LOW)
-            print(message)
+            print(txt_motion)
 
         aio.send_data(led_feed.key, motion)
-        aio.send_data(motion_feed.key, message)
+        aio.send_data(motion_feed.key, txt_motion)
         
     aio.send_data(temperature_feed.key, temperature)
     time.sleep(2)
