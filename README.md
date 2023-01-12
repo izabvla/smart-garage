@@ -1,4 +1,4 @@
-# Smart Garage System with Adafruit IO
+# Smart Garage System with the Raspberry Pi 4 and Adafruit IO
 
 ## Features
 
