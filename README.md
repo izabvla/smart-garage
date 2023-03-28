@@ -2,6 +2,8 @@
 
 The Smart Garage System allows for remote monitoring and controlling of certain features of a house's garage. This prototype is built using a Raspberry Pi 4, electronic sensors and components, and a dashboard using Adafruit IO for display and controls.
 
+![Adafruit IO Dashboard.](img/adafruitio_dashboard.png)
+
 ### Features
 
 - Motion sensor based alarm and light system using a PIR HC-SR501 motion sensor, an active buzzer and LED light.
@@ -15,8 +17,5 @@ Using the GY-521 accelerometer to measure temperature in Celsius, and then sendi
 - Garage door remote opening and closing with the KY-036 touch metal sensor.
 One of the most common and useful features of a Smart Garage System is remote control of the garage door. Whether to make sure you shut the door on your way out to work, or to be able to open it remotely a few seconds before you arrive home, this feature is simple but essential.
 We use the KY-036 metal touch sensor to detect whether the door is shut or open, and the Adafruit dashboard for remote features.
-
-### Adafruit IO Dashboard
-![Adafruit IO Dashboard.](img/adafruitio_dashboard.png)
 
 ### How to use it
