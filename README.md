@@ -1,14 +1,11 @@
-# Smart Garage System with the Raspberry Pi 4 and Adafruit IO
+## Smart Garage System with the Raspberry Pi 4 and Adafruit IO
 
-## Features
+### Features
 
-- Motion sensor based alarm and light system.
-Description. (PIR HC-SR501, Active Buzzer, LED light)
+- Motion sensor based alarm and light system. (PIR HC-SR501, Active Buzzer, LED light)
 
-- Temperature monitoring.
-Description. (GY-521)
+- Temperature monitoring. (GY-521)
 
-- Garage door remote opening and closing.
-Description. (KY-036)
+- Garage door remote opening and closing. (KY-036)
 
 

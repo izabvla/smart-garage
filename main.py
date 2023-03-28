@@ -1,11 +1,12 @@
 import RPi.GPIO as GPIO
 import time
 import board
+
 # Import Adafruit_IO library and create instance of REST client.
 from Adafruit_IO import RequestError, Client, Feed
 import adafruit_mpu6050
 
-# GPIO SETUP:
+# GPIO SETUP - define connections between GPIO pins, breadboard and sensors
 #   Mode: BCM
 #   IO devices: GY-521, PIR HC-SR501, KY-036, LED, Active Buzzer
 
@@ -15,19 +16,26 @@ GPIO.setmode(GPIO.BCM)
 # GY-521 input
 i2c = board.I2C()  # uses board.SCL and board.SDA
 mpu = adafruit_mpu6050.MPU6050(i2c)
+
 # PIR HC-SR501 input
 PIR_PIN = 14
 GPIO.setup(14, GPIO.IN, GPIO.PUD_DOWN)
+
 # KY-036 input
 TOUCH_PIN = 27
 GPIO.setup(TOUCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 # LED output
 LED_PIN = 15
 GPIO.setup(15, GPIO.OUT)
+
 # Active Buzzer output
 BUZZER_PIN = 17
 GPIO.setup(17, GPIO.OUT)
 
+
+# establishes connection to Adafruit API to access Adafruit IO features such as feeds and dashboards
+    
 # Adafruit Client connection
 ADAFRUIT_IO_USERNAME = 'compiotgroup3'
 ADAFRUIT_IO_KEY = 'aio_gpXs67Bn7HYZmTFj0t1Zuisebnv5'
