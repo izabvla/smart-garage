@@ -37,8 +37,8 @@ GPIO.setup(17, GPIO.OUT)
 # establishes connection to Adafruit API to access Adafruit IO features such as feeds and dashboards
     
 # Adafruit Client connection
-ADAFRUIT_IO_USERNAME = 'compiotgroup3'
-ADAFRUIT_IO_KEY = 'aio_gpXs67Bn7HYZmTFj0t1Zuisebnv5'
+ADAFRUIT_IO_USERNAME = ''
+ADAFRUIT_IO_KEY = ''
 
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 
