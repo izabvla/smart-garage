@@ -13,7 +13,6 @@ The Smart Garage System allows for remote monitoring and controlling of certain 
 
 - **Temperature monitoring with the GY-521 module**
 
-    Garages are often in need of some sort of temperature regulation and monitoring method, as they are often used for storage purposes. Items like record vinyls, oil paintings, computer servers, all require a certain temperature to perform best.
     Using the GY-521 accelerometer to measure temperature in Celsius, and then sending the data to an Adafruit feed, users can readily monitor the current temperature inside their garage. In future improvements, a heater or a fan can be connected for remote control and automation by setting up minimum and maximum temperature values, and controlling the heater and fan accordingly to adjust the temperature.
 
 - **Garage door remote opening and closing with the KY-036 touch metal sensor**
